@@ -1,14 +1,19 @@
 # TODO:
-# - rc-scripts/rc-inetd scripts/configuration for daemons
-# - collect Obsoletes
+# - rc-scripts for: ftpd,telnetd(?),rlogind,uucpd
+# - rc-inetd for: ftpd, telnetd,tftpd,rexecd,rlogind,talkd,uucpd
+# - default configs for: 
+# - inetd and standalone subpackages (where possible): ftpd,telnetd(?),rlogind,uucpd
+# - collect Obsoletes for: rexecd,rlogin,rsh,rshd,rlogind,uucpd
 # - optional kerberos?
 # - put configs for ftpd into /etc/ftpd, not /etc
-# - ftpd in 2 versions: standalone and inetd
+# - rc-inetd files for inetd
+# - remove logger conflict with util-linux
+# - collect triggers for upgrade: telnetd
 Summary:	Common networking utilities and servers
 Summary(pl):	Popularne narzêdzia i serwery sieciowe
 Name:		inetutils
 Version:	1.4.2
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
@@ -18,6 +23,14 @@ Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
 Source3:	%{name}-syslog.logrotate
 Source4:	%{name}-syslog.sysconfig
+# telnet:
+Source10:	%{name}-telnet.desktop
+Source11:	%{name}-telnet.png
+Source12:	%{name}-telnetd.inetd
+# ftp:
+Source15:	%{name}-ftp.desktop
+Source16:	%{name}-ftp.png
+# patches:
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://www.gnu.org/software/inetutils/
@@ -95,6 +108,8 @@ Requires:	%{name} = %{version}
 Provides:	logger
 Obsoletes:	logger
 Obsoletes:	util-linux-logger
+#Temporary:
+Conflicts:	util-linux
 
 %description logger
 logger utility from GNU inetutils package.
@@ -357,7 +372,8 @@ Klient whois z pakietu GNU inetutils.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig,logrotate.d},/bin,/var/log}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig/rc-inetd,logrotate.d},/bin,/var/log} \
+	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -367,6 +383,11 @@ install %{SOURCE1}	$RPM_BUILD_ROOT/etc/syslog.conf
 install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d/init.d/syslog
 install %{SOURCE3}	$RPM_BUILD_ROOT/etc/logrotate.d/syslog
 install %{SOURCE4}	$RPM_BUILD_ROOT/etc/sysconfig/syslog
+install %{SOURCE10}	$RPM_BUILD_ROOT%{_desktopdir}/telnet.desktop
+install %{SOURCE11}	$RPM_BUILD_ROOT%{_pixmapsdir}/telnet.png
+install %{SOURCE12}	$RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/telnetd
+install %{SOURCE15}	$RPM_BUILD_ROOT%{_desktopdir}/ftp.desktop
+install %{SOURCE16}	$RPM_BUILD_ROOT%{_pixmapsdir}/ftp.png
 
 for n in alert debug kernel mail.log messages news.log secure syslog
 do
@@ -417,6 +438,22 @@ if [ -f /etc/syslog.conf.rpmsave ]; then
 	echo "Original file from package is avaible as /etc/syslog.conf.rpmnew"
 fi
 
+%post telnetd
+if [ -f /var/lock/subsys/rc-inetd ]; then
+	/etc/rc.d/init.d/rc-inetd reload 1>&2
+else
+	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start inet server" 1>&2
+fi
+
+%postun telnetd
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/rc-inetd ]; then
+		/etc/rc.d/init.d/rc-inetd reload 1>&2
+	fi
+fi
+
+# Here should come trigger for upgrade from standard telnetd
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README* THANKS TODO
@@ -426,6 +463,8 @@ fi
 %defattr(644,root,root,755)
 %doc ftp/ChangeLog
 %attr(755,root,root) %{_bindir}/ftp
+%{_desktopdir}/ftp.desktop
+%{_pixmapsdir}/ftp.png
 %{_mandir}/man1/ftp.1*
 
 %files ftpd
@@ -512,11 +551,14 @@ fi
 %defattr(644,root,root,755)
 %doc telnet/ChangeLog
 %attr(755,root,root) %{_bindir}/telnet
+%{_desktopdir}/telnet.desktop
+%{_pixmapsdir}/telnet.png
 %{_mandir}/man1/telnet.1*
 
 %files telnetd
 %defattr(644,root,root,755)
 %doc telnetd/ChangeLog
+%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/sysconfig/rc-inetd/telnetd
 %attr(755,root,root) %{_sbindir}/telnetd
 %{_mandir}/man8/telnetd.8*
 
