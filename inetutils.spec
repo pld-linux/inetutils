@@ -47,6 +47,8 @@ Group:		Networking/Utilities
 Requires:	%{name} = %{version}
 Provides:	ftp
 Obsoletes:	ftp
+Obsoletes:	lukemftp
+Obsoletes:	tnftp
 
 %description ftp
 FTP client from GNU inetutils package.
@@ -390,6 +392,16 @@ if [ "$1" = "0" ]; then
 		/etc/rc.d/init.d/syslog stop 1>&2
 	fi
 	/sbin/chkconfig --del syslog
+fi
+
+%triggerpostun -- syslog
+/sbin/chkconfig --del syslog
+/sbin/chkconfig --add syslog
+if [ -f /etc/syslog.conf.rpmsave ]; then
+	mv -f /etc/syslog.conf /etc/syslog.conf.rpmnew
+	mv -f /etc/syslog.conf.rpmsave /etc/syslog.conf
+	echo "Moved /etc/syslog.conf.rpmsave as /etc/syslog.conf"
+	echo "Original file from package is avaible as /etc/syslog.conf.rpmnew"
 fi
 
 %files
