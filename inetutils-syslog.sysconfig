@@ -11,7 +11,7 @@ HOSTLIST=""
 # (``:'') separator. Remember that the first match is used, not the best.
 DOMAINLIST=""
 
-# If non-zero, syslogd marks timestamp to syslog. Specify interval between two 
+# If non-zero, syslogd marks timestamp to syslog. Specify interval between two
 # "-- MARK --"
 MARK_TIMESTAMP=0
 
