@@ -3,11 +3,12 @@
 # - collect Obsoletes
 # - optional kerberos?
 # - put configs for ftpd into /etc/ftpd, not /etc
+# - ftpd in 2 versions: standalone and inetd
 Summary:	Common networking utilities and servers
 Summary(pl):	Popularne narzêdzia i serwery sieciowe
 Name:		inetutils
 Version:	1.4.2
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
@@ -93,6 +94,7 @@ Group:		Applications/System
 Requires:	%{name} = %{version}
 Provides:	logger
 Obsoletes:	logger
+Obsoletes:	util-linux-logger
 
 %description logger
 logger utility from GNU inetutils package.
@@ -216,6 +218,8 @@ Summary(pl):	Klient talk z pakiety GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}
 Provides:	talk
+Obsoletes:	ntalk
+Obsoletes:	ntalk-client
 Obsoletes:	talk
 
 %description talk
@@ -231,6 +235,7 @@ Group:		Networking/Daemons
 PreReq:		rc-inetd
 Requires:	%{name} = %{version}
 Provides:	talkd
+Obsoletes:	ntalkd
 Obsoletes:	talkd
 
 %description talkd
@@ -245,6 +250,7 @@ Summary(pl):	Klient telneta z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}
 Provides:	telnet
+Obsoletes:	heimdal-telnet
 Obsoletes:	telnet
 
 %description telnet
@@ -259,6 +265,8 @@ Summary(pl):	Serwer telneta z pakietu GNU inetutils
 Group:		Networking/Daemons
 PreReq:		rc-inetd
 Requires:	%{name} = %{version}
+Requires:	inetdaemon
+Requires:	login
 Provides:	telnetd
 Obsoletes:	telnetd
 
@@ -275,6 +283,7 @@ Group:		Networking/Utilities
 Requires:	%{name} = %{version}
 Provides:	tftp
 Obsoletes:	tftp
+Obsoletes:	tftp-hpa
 
 %description tftp
 TFTP client from GNU inetutils package.
@@ -289,7 +298,11 @@ Group:		Networking/Daemons
 PreReq:		rc-inetd
 Requires:	%{name} = %{version}
 Provides:	tftpdaemon
+Obsoletes:	atftpd
 Obsoletes:	tftpdaemon
+Obsoletes:	tftpd-hpa
+Obsoletes:	tftp-server
+Obsoletes:	utftpd
 
 %description tftpd
 TFTP server from GNU inetutils package.
