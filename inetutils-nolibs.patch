@@ -1,0 +1,21 @@
+--- inetutils-1.4.2/configure.ac.orig	2002-12-23 05:27:37.000000000 +0100
++++ inetutils-1.4.2/configure.ac	2003-07-26 17:33:12.000000000 +0200
+@@ -127,12 +127,12 @@
+ #endif /* HAVE___P */])
+ 
+ ### Checks for libraries.
+-AC_CHECK_LIB(bsd, revoke)
+-AC_CHECK_LIB(nsl, inet_ntoa)
+-AC_CHECK_LIB(resolv, gethostname)
+-AC_CHECK_LIB(socket, getpeername)
+-AC_CHECK_LIB(opie, opiegenerator)
+-AC_CHECK_LIB(z, gzdopen)
++AC_SEARCH_LIBS(revoke, bsd)
++AC_SEARCH_LIBS(inet_ntoa, nsl)
++AC_SEARCH_LIBS(gethostname, resolv)
++AC_SEARCH_LIBS(getpeername, socket)
++AC_CHECK_LIB(opie, opiegenerator, [LIBOPIE="-lopie"])
++AC_CHECK_LIB(z, gzdopen, [LIBZ="-lz"])
+ 
+ # We want to use libreadline if it is available.  However, it seems that the
+ # guile hackers have had problems because there is a Solaris libreadline

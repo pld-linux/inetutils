@@ -1,0 +1,56 @@
+--- inetutils-1.4.2/doc/inetutils.texi.orig	2001-11-11 07:11:02.000000000 +0100
++++ inetutils-1.4.2/doc/inetutils.texi	2003-07-26 17:28:25.000000000 +0200
+@@ -22,29 +22,30 @@
+ 
+ @ifinfo
+ @format
+-START-INFO-DIR-ENTRY
+-* networking(inet) utilities: (inetutils).      GNU networking utilities.
+-* ftp: (inetutils)ftp invocation.               File Transfer Protocol.
+-* ftpd: (inetutils)ftpd invocation.             FTP Daemon.
+-* inetd: (inetutils)inetd invocation.           Interner super-server.
+-* ping: (inetutils)ping invocation.             Packets to network hosts.
+-* rcp: (inetutils)rcp invocation.               Strip non-directory suffix.
+-* rexecd: (inetutils)rexecd invocation.         Remote execution server.
+-* rlogin: (inetutils)rlogin invocation.         Remote login.
+-* rlogind: (inetutils)rlogind invocation.       Remote login server.
+-* rsh: (inetutils)rsh invocation.               Remote shell.
+-* rshd: (inetutils)rshd invocation.             Remote shell server.
+-* logger: (inetutils)logger invocation.         Logger.
+-* syslogd: (inetutils)syslogd invocation.       Syslog server.
+-* talk: (inetutils)talk invocation.             Talk client.
+-* talkd: (inetutils)talkd invocation.           Talk server.
+-@c * telnet: (inetutils)telnet invocation.         User interface to TELNET.
+-@c * telnetd: (inetutils)telnetd invocation.       Telnet server.
+-* tftp: (inetutils)tftp invocation.             Trivial FTP.
+-@c * tftpd: (inetutils)tftpd invocation.           TFTP server.
+-@c * uucpd: (inetutils)uucpd invocation.           Unix to Unix Copy.
+-@c * whois: (inetutils)whois invocation.           Whois user interface.
+-END-INFO-DIR-ENTRY
++@dircategory Net utilities:
++@direntry
++* networking(inet) utils: (inetutils).	GNU networking utilities
++* ftp: (inetutils)ftp.			File Transfer Protocol
++* ftpd: (inetutils)ftpd.		FTP Daemon
++* inetd: (inetutils)inetd.		Interner super-server
++* ping: (inetutils)ping.		Packets to network hosts
++* rcp: (inetutils)rcp.			Strip non-directory suffix
++* rexecd: (inetutils)rexecd.		Remote execution server
++* rlogin: (inetutils)rlogin.		Remote login
++* rlogind: (inetutils)rlogind.		Remote login server
++* rsh: (inetutils)rsh.			Remote shell
++* rshd: (inetutils)rshd.		Remote shell server
++* logger: (inetutils)logger.		Logger
++* syslogd: (inetutils)syslogd.		Syslog server
++* talk: (inetutils)talk.		Talk client
++* talkd: (inetutils)talkd.		Talk server
++@c * telnet: (inetutils)telnet.		User interface to TELNET
++@c * telnetd: (inetutils)telnetd.	Telnet server
++* tftp: (inetutils)tftp.		Trivial FTP
++@c * tftpd: (inetutils)tftpd.		TFTP server
++@c * uucpd: (inetutils)uucpd.		Unix to Unix Copy
++@c * whois: (inetutils)whois.		Whois user interface
++@end direntry
+ @end format
+ @end ifinfo
+ 
