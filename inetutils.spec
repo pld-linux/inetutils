@@ -35,7 +35,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://www.gnu.org/software/inetutils/
 BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1.7
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
