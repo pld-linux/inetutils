@@ -2,15 +2,21 @@
 # - rc-scripts/rc-inetd scripts/configuration for daemons
 # - collect Obsoletes
 # - optional kerberos?
+# - put configs for ftpd into /etc/ftpd, not /etc
 Summary:	Common networking utilities and servers
 Summary(pl):	Popularne narzêdzia i serwery sieciowe
 Name:		inetutils
 Version:	1.4.2
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
 # Source0-md5:	df0909a586ddac2b7a0d62795eea4206
+# syslogd:
+Source1:	%{name}-syslog.conf
+Source2:	%{name}-syslog.init
+Source3:	%{name}-syslog.logrotate
+Source4:	%{name}-syslog.sysconfig
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://www.gnu.org/software/inetutils/
@@ -98,6 +104,7 @@ Summary(pl):	Narzêdzie ping z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}
 Provides:	ping
+Obsoletes:	iputils-ping
 Obsoletes:	ping
 
 %description ping
@@ -184,9 +191,16 @@ Summary:	syslog daemon from GNU inetutils package
 Summary(pl):	Demon sysloga z pakietu GNU inetutils
 Group:		Daemons
 PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
+Requires(post):	fileutils
 Requires:	%{name} = %{version}
+Requires:	logrotate >= 3.2-3
 Provides:	syslogd
+Provides:	syslogdaemon
+Obsoletes:	klogd
 Obsoletes:	syslogd
+Obsoletes:	syslog-ng
+Obsoletes:	msyslog
 
 %description syslogd
 syslog daemon from GNU inetutils package.
@@ -328,10 +342,23 @@ Klient whois z pakietu GNU inetutils.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig,logrotate.d},/bin,/var/log}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	SUIDMODE="-m755"
+
+install %{SOURCE1}	$RPM_BUILD_ROOT/etc/syslog.conf
+install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d/init.d/syslog
+install %{SOURCE3}	$RPM_BUILD_ROOT/etc/logrotate.d/syslog
+install %{SOURCE4}	$RPM_BUILD_ROOT/etc/sysconfig/syslog
+
+for n in alert debug kernel mail.log messages news.log secure syslog
+do
+	> $RPM_BUILD_ROOT/var/log/$n
+done
+
+mv $RPM_BUILD_ROOT%{_bindir}/ping $RPM_BUILD_ROOT/bin/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -341,6 +368,29 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%post syslogd
+for n in /var/log/{alert,debug,kernel,mail.log,messages,news.log,secure,syslog}
+do
+	[ -f $n ] && continue
+	> $n
+	chmod 640 $n
+done
+
+/sbin/chkconfig --add syslog
+if [ -f /var/lock/subsys/syslog ]; then
+	/etc/rc.d/init.d/syslog restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/syslog start\" to start syslog daemon." 1>&2
+fi
+
+%preun syslogd
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/syslog ]; then
+		/etc/rc.d/init.d/syslog stop 1>&2
+	fi
+	/sbin/chkconfig --del syslog
+fi
 
 %files
 %defattr(644,root,root,755)
@@ -374,7 +424,7 @@ rm -rf $RPM_BUILD_ROOT
 %files ping
 %defattr(644,root,root,755)
 %doc ping/{ChangeLog,TODO}
-%attr(4754,root,adm) %{_bindir}/ping
+%attr(4754,root,adm) /bin/ping
 %{_mandir}/man8/ping.8*
 
 %files rexecd
@@ -412,6 +462,11 @@ rm -rf $RPM_BUILD_ROOT
 %files syslogd
 %defattr(644,root,root,755)
 %doc syslogd/ChangeLog
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/syslog.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/syslog
+%attr(640,root,root) /etc/logrotate.d/syslog
+%attr(754,root,root) /etc/rc.d/init.d/syslog
+%attr(640,root,root) %ghost /var/log/*
 %attr(755,root,root) %{_sbindir}/syslogd
 %{_mandir}/man5/syslog.conf.5*
 %{_mandir}/man8/syslogd.8*
