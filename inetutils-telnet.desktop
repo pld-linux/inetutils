@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Telnet
+Type=Application
+Comment=Client to connect to remote machines via a text interface
+Comment[de]=Telnet-Client für den textbasierten Remotezugang zu anderen Computern
+Comment[pl]=Klient usługi telnet
+Comment[sv]=Klient för anslutning till fjärrmaskiner via ett textgränssnitt
+Exec=telnet
+Icon=telnet.png
+Terminal=true
+Categories=Network;RemoteAccess;
+Encoding=UTF-8
+# vi: encoding=utf-8
