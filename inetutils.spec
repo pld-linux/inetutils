@@ -1,7 +1,7 @@
 # TODO:
 # - rc-scripts for: ftpd,telnetd(?),rlogind,uucpd
 # - rc-inetd for: ftpd, telnetd,tftpd,rexecd,rlogind,talkd,uucpd
-# - default configs for: 
+# - default configs for:
 # - inetd and standalone subpackages (where possible): ftpd,telnetd(?),rlogind,uucpd
 # - collect Obsoletes for: rexecd,rlogin,rsh,rshd,rlogind,uucpd
 # - optional kerberos?
@@ -89,7 +89,7 @@ Serwer FTP z pakietu GNU inetutils.
 Summary:	inetd server from GNU inetutils package
 Summary(pl):	Serwer inetd z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires:	%{name} = %{version}
 Provides:	inetdaemon
 Obsoletes:	inetdaemon
@@ -136,7 +136,7 @@ Narzêdzie ping z pakietu GNU inetutils.
 Summary:	rexec server from GNU inetutils package
 Summary(pl):	Serwer rexec z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-inetd
+Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Provides:	rexecd
 Obsoletes:	rexecd
@@ -194,7 +194,7 @@ Programy klienckie rsh i rcp z pakietu GNU inetutils.
 Summary:	rsh server from GNU inetutils package
 Summary(pl):	Serwer rsh z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-inetd
+Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Provides:	rshd
 Obsoletes:	rshd
@@ -209,9 +209,9 @@ Serwer rsh z pakietu GNU inetutils.
 Summary:	syslog daemon from GNU inetutils package
 Summary(pl):	Demon sysloga z pakietu GNU inetutils
 Group:		Daemons
-PreReq:		rc-scripts
-Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 Requires(post):	fileutils
+Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}
 Requires:	logrotate >= 3.2-3
 Provides:	syslogd
@@ -247,7 +247,7 @@ Klient talk z pakiety GNU inetutils.
 Summary:	talk server from GNU inetutils package
 Summary(pl):	Serwer talk z pakiety GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-inetd
+Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Provides:	talkd
 Obsoletes:	ntalkd
@@ -278,7 +278,7 @@ Klient telneta z pakietu GNU inetutils.
 Summary:	telnet server from GNU inetutils package
 Summary(pl):	Serwer telneta z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-inetd
+Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Requires:	inetdaemon
 Requires:	login
@@ -310,7 +310,7 @@ Klient TFTP z pakietu GNU inetutils.
 Summary:	TFTP server from GNU inetutils package
 Summary(pl):	Serwer TFTP z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-inetd
+Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Provides:	tftpdaemon
 Obsoletes:	atftpd
@@ -329,7 +329,7 @@ Serwer TFTP z pakietu GNU inetutils.
 Summary:	UUCP server from GNU inetutils package
 Summary(pl):	Serwer UUCP z pakietu GNU inetutils
 Group:		Networking/Daemons
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires:	%{name} = %{version}
 Provides:	uucpd
 Obsoletes:	uucpd
@@ -526,9 +526,9 @@ fi
 %files syslogd
 %defattr(644,root,root,755)
 %doc syslogd/ChangeLog
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/syslog.conf
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/syslog
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/syslog
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/syslog.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/syslog
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/syslog
 %attr(754,root,root) /etc/rc.d/init.d/syslog
 %attr(640,root,root) %ghost /var/log/*
 %attr(755,root,root) %{_sbindir}/syslogd
@@ -558,7 +558,7 @@ fi
 %files telnetd
 %defattr(644,root,root,755)
 %doc telnetd/ChangeLog
-%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/sysconfig/rc-inetd/telnetd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/telnetd
 %attr(755,root,root) %{_sbindir}/telnetd
 %{_mandir}/man8/telnetd.8*
 
