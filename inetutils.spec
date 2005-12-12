@@ -89,8 +89,8 @@ Serwer FTP z pakietu GNU inetutils.
 Summary:	inetd server from GNU inetutils package
 Summary(pl):	Serwer inetd z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-scripts
 Requires:	%{name} = %{version}
+Requires:	rc-scripts
 Provides:	inetdaemon
 Obsoletes:	inetdaemon
 
@@ -136,8 +136,8 @@ Narzêdzie ping z pakietu GNU inetutils.
 Summary:	rexec server from GNU inetutils package
 Summary(pl):	Serwer rexec z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-inetd
 Requires:	%{name} = %{version}
+Requires:	rc-inetd
 Provides:	rexecd
 Obsoletes:	rexecd
 
@@ -194,8 +194,8 @@ Programy klienckie rsh i rcp z pakietu GNU inetutils.
 Summary:	rsh server from GNU inetutils package
 Summary(pl):	Serwer rsh z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-inetd
 Requires:	%{name} = %{version}
+Requires:	rc-inetd
 Provides:	rshd
 Obsoletes:	rshd
 
@@ -209,11 +209,11 @@ Serwer rsh z pakietu GNU inetutils.
 Summary:	syslog daemon from GNU inetutils package
 Summary(pl):	Demon sysloga z pakietu GNU inetutils
 Group:		Daemons
-Requires:	rc-scripts
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}
 Requires:	logrotate >= 3.2-3
+Requires:	rc-scripts
 Provides:	syslogd
 Provides:	syslogdaemon
 Obsoletes:	klogd
@@ -247,8 +247,8 @@ Klient talk z pakiety GNU inetutils.
 Summary:	talk server from GNU inetutils package
 Summary(pl):	Serwer talk z pakiety GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-inetd
 Requires:	%{name} = %{version}
+Requires:	rc-inetd
 Provides:	talkd
 Obsoletes:	ntalkd
 Obsoletes:	talkd
@@ -278,10 +278,10 @@ Klient telneta z pakietu GNU inetutils.
 Summary:	telnet server from GNU inetutils package
 Summary(pl):	Serwer telneta z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-inetd
 Requires:	%{name} = %{version}
 Requires:	inetdaemon
 Requires:	login
+Requires:	rc-inetd
 Provides:	telnetd
 Obsoletes:	telnetd
 
@@ -310,8 +310,8 @@ Klient TFTP z pakietu GNU inetutils.
 Summary:	TFTP server from GNU inetutils package
 Summary(pl):	Serwer TFTP z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-inetd
 Requires:	%{name} = %{version}
+Requires:	rc-inetd
 Provides:	tftpdaemon
 Obsoletes:	atftpd
 Obsoletes:	tftpdaemon
@@ -329,8 +329,8 @@ Serwer TFTP z pakietu GNU inetutils.
 Summary:	UUCP server from GNU inetutils package
 Summary(pl):	Serwer UUCP z pakietu GNU inetutils
 Group:		Networking/Daemons
-Requires:	rc-scripts
 Requires:	%{name} = %{version}
+Requires:	rc-scripts
 Provides:	uucpd
 Obsoletes:	uucpd
 
