@@ -39,6 +39,7 @@ BuildRequires:	automake >= 1:1.7
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -217,9 +218,9 @@ Requires:	rc-scripts
 Provides:	syslogd
 Provides:	syslogdaemon
 Obsoletes:	klogd
-Obsoletes:	syslogd
-Obsoletes:	syslog-ng
 Obsoletes:	msyslog
+Obsoletes:	syslog-ng
+Obsoletes:	syslogd
 
 %description syslogd
 syslog daemon from GNU inetutils package.
@@ -314,9 +315,9 @@ Requires:	%{name} = %{version}
 Requires:	rc-inetd
 Provides:	tftpdaemon
 Obsoletes:	atftpd
-Obsoletes:	tftpdaemon
-Obsoletes:	tftpd-hpa
 Obsoletes:	tftp-server
+Obsoletes:	tftpd-hpa
+Obsoletes:	tftpdaemon
 Obsoletes:	utftpd
 
 %description tftpd
@@ -379,7 +380,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig/rc-inetd,logrotate.d},/bi
 	DESTDIR=$RPM_BUILD_ROOT \
 	SUIDMODE="-m755"
 
-install %{SOURCE1}	$RPM_BUILD_ROOT/etc/syslog.conf
+install %{SOURCE1}	$RPM_BUILD_ROOT%{_sysconfdir}/syslog.conf
 install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d/init.d/syslog
 install %{SOURCE3}	$RPM_BUILD_ROOT/etc/logrotate.d/syslog
 install %{SOURCE4}	$RPM_BUILD_ROOT/etc/sysconfig/syslog
@@ -439,17 +440,11 @@ if [ -f /etc/syslog.conf.rpmsave ]; then
 fi
 
 %post telnetd
-if [ -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd reload 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start inet server" 1>&2
-fi
+%service -q rc-inetd reload
 
 %postun telnetd
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/rc-inetd ]; then
-		/etc/rc.d/init.d/rc-inetd reload 1>&2
-	fi
+	%service -q rc-inetd reload
 fi
 
 # Here should come trigger for upgrade from standard telnetd
