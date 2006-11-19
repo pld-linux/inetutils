@@ -1,0 +1,18 @@
+--- inetutils-1.5/acinclude.m4.orig	2006-10-11 23:46:22.000000000 +0200
++++ inetutils-1.5/acinclude.m4	2006-11-19 21:38:12.412917500 +0100
+@@ -197,6 +197,7 @@
+ dnl 
+ AC_DEFUN([IU_LIB_TERMCAP], [
+   AC_REQUIRE([IU_LIB_NCURSES])
++  AC_CHECK_LIB(tinfo, tgetent, [LIBTERMCAP=-ltinfo], [
+   if test "$LIBNCURSES"; then
+     LIBTERMCAP="$LIBNCURSES"
+   else
+@@ -208,6 +209,7 @@
+       AC_CHECK_LIB(termlib, tgetent, LIBTERMCAP=-ltermlib)
+     fi
+   fi
++  ])
+   AC_SUBST(LIBTERMCAP)])dnl
+ 
+ dnl IU_LIB_CURSES -- checke for curses, and associated libraries
