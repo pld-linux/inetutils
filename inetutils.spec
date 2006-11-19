@@ -1,4 +1,5 @@
 # TODO:
+# - package ifconfig?
 # - rc-scripts for: ftpd,telnetd(?),rlogind,uucpd
 # - rc-inetd for: ftpd, telnetd,tftpd,rexecd,rlogind,talkd,uucpd
 # - default configs for:
@@ -12,12 +13,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl):	Popularne narzêdzia i serwery sieciowe
 Name:		inetutils
-Version:	1.4.2
-Release:	0.4
+Version:	1.5
+Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
-# Source0-md5:	df0909a586ddac2b7a0d62795eea4206
+# Source0-md5:	9e0f1ac040de3168ea785f44e42d585e
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -33,9 +34,12 @@ Source16:	%{name}-ftp.png
 # patches:
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
+Patch2:		%{name}-tinfo.patch
 URL:		http://www.gnu.org/software/inetutils/
-BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
+# for config.rpath
+BuildRequires:	gettext-devel
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
@@ -359,9 +363,12 @@ Klient whois z pakietu GNU inetutils.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+cp -f /usr/share/gettext/config.rpath build-aux
 
 %build
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -395,7 +402,10 @@ do
 	> $RPM_BUILD_ROOT/var/log/$n
 done
 
-mv $RPM_BUILD_ROOT%{_bindir}/ping $RPM_BUILD_ROOT/bin/
+# follow FHS
+mv $RPM_BUILD_ROOT%{_bindir}/ping $RPM_BUILD_ROOT/bin
+# unify path
+mv $RPM_BUILD_ROOT%{_bindir}/ping6 $RPM_BUILD_ROOT/bin
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -456,7 +466,6 @@ fi
 
 %files ftp
 %defattr(644,root,root,755)
-%doc ftp/ChangeLog
 %attr(755,root,root) %{_bindir}/ftp
 %{_desktopdir}/ftp.desktop
 %{_pixmapsdir}/ftp.png
@@ -464,49 +473,43 @@ fi
 
 %files ftpd
 %defattr(644,root,root,755)
-%doc ftpd/ChangeLog
 %attr(755,root,root) %{_sbindir}/ftpd
 %{_mandir}/man8/ftpd.8*
 
 %files inetd
 %defattr(644,root,root,755)
-%doc inetd/{ChangeLog,TODO}
 %attr(755,root,root) %{_sbindir}/inetd
 %{_mandir}/man8/inetd.8*
 
 %files logger
 %defattr(644,root,root,755)
-%doc logger/ChangeLog
 %attr(755,root,root) %{_bindir}/logger
 %{_mandir}/man1/logger.1*
 
 %files ping
 %defattr(644,root,root,755)
-%doc ping/{ChangeLog,TODO}
+%doc ping/TODO
 %attr(4754,root,adm) /bin/ping
+%attr(4754,root,adm) /bin/ping6
 %{_mandir}/man8/ping.8*
 
 %files rexecd
 %defattr(644,root,root,755)
-%doc rexecd/ChangeLog
 %attr(755,root,root) %{_sbindir}/rexecd
 %{_mandir}/man8/rexecd.8*
 
 %files rlogin
 %defattr(644,root,root,755)
-%doc rlogin/ChangeLog
 %attr(4755,root,root) %{_bindir}/rlogin
 %{_mandir}/man1/rlogin.1*
 
 %files rlogind
 %defattr(644,root,root,755)
-%doc rlogind/ChangeLog
 %attr(755,root,root) %{_sbindir}/rlogind
 %{_mandir}/man8/rlogind.8*
 
 %files rsh
 %defattr(644,root,root,755)
-%doc rsh/ChangeLog
 %attr(4755,root,root) %{_bindir}/rcp
 %attr(4755,root,root) %{_bindir}/rsh
 %{_mandir}/man1/rcp.1*
@@ -514,13 +517,11 @@ fi
 
 %files rshd
 %defattr(644,root,root,755)
-%doc rshd/ChangeLog
 %attr(755,root,root) %{_sbindir}/rshd
 %{_mandir}/man8/rshd.8*
 
 %files syslogd
 %defattr(644,root,root,755)
-%doc syslogd/ChangeLog
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/syslog.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/syslog
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/syslog
@@ -532,19 +533,16 @@ fi
 
 %files talk
 %defattr(644,root,root,755)
-%doc talk/ChangeLog
 %attr(755,root,root) %{_bindir}/talk
 %{_mandir}/man1/talk.1*
 
 %files talkd
 %defattr(644,root,root,755)
-%doc talkd/ChangeLog
 %attr(755,root,root) %{_sbindir}/talkd
 %{_mandir}/man8/talkd.8*
 
 %files telnet
 %defattr(644,root,root,755)
-%doc telnet/ChangeLog
 %attr(755,root,root) %{_bindir}/telnet
 %{_desktopdir}/telnet.desktop
 %{_pixmapsdir}/telnet.png
@@ -552,29 +550,25 @@ fi
 
 %files telnetd
 %defattr(644,root,root,755)
-%doc telnetd/ChangeLog
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/telnetd
 %attr(755,root,root) %{_sbindir}/telnetd
 %{_mandir}/man8/telnetd.8*
 
 %files tftp
 %defattr(644,root,root,755)
-%doc tftp/ChangeLog
 %attr(755,root,root) %{_bindir}/tftp
 %{_mandir}/man1/tftp.1*
 
 %files tftpd
 %defattr(644,root,root,755)
-%doc tftpd/ChangeLog
 %attr(755,root,root) %{_sbindir}/tftpd
 %{_mandir}/man8/tftpd.8*
 
 %files uucpd
 %defattr(644,root,root,755)
-%doc uucpd/ChangeLog
 %attr(755,root,root) %{_sbindir}/uucpd
 
 %files whois
 %defattr(644,root,root,755)
-%doc gwhois/{ChangeLog,README,TODO}
+%doc gwhois/{README,TODO}
 %attr(755,root,root) %{_bindir}/whois
