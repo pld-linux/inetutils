@@ -11,7 +11,7 @@
 # - remove logger conflict with util-linux
 # - collect triggers for upgrade: telnetd
 Summary:	Common networking utilities and servers
-Summary(pl):	Popularne narzêdzia i serwery sieciowe
+Summary(pl.UTF-8):   Popularne narzÄ™dzia i serwery sieciowe
 Name:		inetutils
 Version:	1.5
 Release:	0.1
@@ -54,14 +54,14 @@ This is a distribution of common networking utilities and servers.
 Main package currently contains only some common documentation, all
 utilities are in their own packages.
 
-%description -l pl
-To jest dystrybucja popularnych narzêdzi i serwerów sieciowych. G³ówny
-pakiet zawiera tylko wspóln± dokumentacjê, natomiast wszystkie
-narzêdzia s± w osobnych pakietach.
+%description -l pl.UTF-8
+To jest dystrybucja popularnych narzÄ™dzi i serwerÃ³w sieciowych. GÅ‚Ã³wny
+pakiet zawiera tylko wspÃ³lnÄ… dokumentacjÄ™, natomiast wszystkie
+narzÄ™dzia sÄ… w osobnych pakietach.
 
 %package ftp
 Summary:	FTP client from GNU inetutils package
-Summary(pl):	Klient FTP z pakietu GNU inetutils
+Summary(pl.UTF-8):   Klient FTP z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	ftp
@@ -72,12 +72,12 @@ Obsoletes:	tnftp
 %description ftp
 FTP client from GNU inetutils package.
 
-%description ftp -l pl
+%description ftp -l pl.UTF-8
 Klient FTP z pakietu GNU inetutils.
 
 %package ftpd
 Summary:	FTP server from GNU inetutils package
-Summary(pl):	Serwer FTP z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer FTP z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	ftpserver
@@ -87,12 +87,12 @@ Obsoletes:	ftpserver
 %description ftpd
 FTP server from GNU inetutils package.
 
-%description ftpd -l pl
+%description ftpd -l pl.UTF-8
 Serwer FTP z pakietu GNU inetutils.
 
 %package inetd
 Summary:	inetd server from GNU inetutils package
-Summary(pl):	Serwer inetd z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer inetd z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-scripts
@@ -102,12 +102,12 @@ Obsoletes:	inetdaemon
 %description inetd
 inetd server from GNU inetutils package.
 
-%description inetd -l pl
+%description inetd -l pl.UTF-8
 Serwer inetd z pakietu GNU inetutils.
 
 %package logger
 Summary:	logger utility from GNU inetutils package
-Summary(pl):	Narzêdzie logger z pakietu GNU inetutils
+Summary(pl.UTF-8):   NarzÄ™dzie logger z pakietu GNU inetutils
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 Provides:	logger
@@ -119,12 +119,12 @@ Conflicts:	util-linux
 %description logger
 logger utility from GNU inetutils package.
 
-%description logger -l pl
-Narzêdzie logger z pakietu GNU inetutils.
+%description logger -l pl.UTF-8
+NarzÄ™dzie logger z pakietu GNU inetutils.
 
 %package ping
 Summary:	ping utility from GNU inetutils package
-Summary(pl):	Narzêdzie ping z pakietu GNU inetutils
+Summary(pl.UTF-8):   NarzÄ™dzie ping z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	ping
@@ -134,12 +134,12 @@ Obsoletes:	ping
 %description ping
 ping utility from GNU inetutils package.
 
-%description ping -l pl
-Narzêdzie ping z pakietu GNU inetutils.
+%description ping -l pl.UTF-8
+NarzÄ™dzie ping z pakietu GNU inetutils.
 
 %package rexecd
 Summary:	rexec server from GNU inetutils package
-Summary(pl):	Serwer rexec z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer rexec z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
@@ -149,12 +149,12 @@ Obsoletes:	rexecd
 %description rexecd
 rexec server from GNU inetutils package.
 
-%description rexecd -l pl
+%description rexecd -l pl.UTF-8
 Serwer rexec z pakietu GNU inetutils.
 
 %package rlogin
 Summary:	rlogin client from GNU inetutils package
-Summary(pl):	Klient rlogin z pakietu GNU inetutils
+Summary(pl.UTF-8):   Klient rlogin z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	rlogin
@@ -163,12 +163,12 @@ Obsoletes:	rlogin
 %description rlogin
 rlogin client from GNU inetutils package.
 
-%description rlogin -l pl
+%description rlogin -l pl.UTF-8
 Klient rlogin z pakietu GNU inetutils.
 
 %package rlogind
 Summary:	rlogin server from GNU inetutils package
-Summary(pl):	Serwer rlogin z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer rlogin z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	rlogind
@@ -178,12 +178,12 @@ Obsoletes:	rlogind
 %description rlogind
 rlogin server from GNU inetutils package.
 
-%description rlogind -l pl
+%description rlogind -l pl.UTF-8
 Serwer rlogin z pakietu GNU inetutils.
 
 %package rsh
 Summary:	rsh and rcp clients from GNU inetutils package
-Summary(pl):	Programy klienckie rsh i rcp z pakietu GNU inetutils
+Summary(pl.UTF-8):   Programy klienckie rsh i rcp z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	rsh
@@ -192,12 +192,12 @@ Obsoletes:	rsh
 %description rsh
 rsh and rcp clients from GNU inetutils package.
 
-%description rsh -l pl
+%description rsh -l pl.UTF-8
 Programy klienckie rsh i rcp z pakietu GNU inetutils.
 
 %package rshd
 Summary:	rsh server from GNU inetutils package
-Summary(pl):	Serwer rsh z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer rsh z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
@@ -207,12 +207,12 @@ Obsoletes:	rshd
 %description rshd
 rsh server from GNU inetutils package.
 
-%description rshd -l pl
+%description rshd -l pl.UTF-8
 Serwer rsh z pakietu GNU inetutils.
 
 %package syslogd
 Summary:	syslog daemon from GNU inetutils package
-Summary(pl):	Demon sysloga z pakietu GNU inetutils
+Summary(pl.UTF-8):   Demon sysloga z pakietu GNU inetutils
 Group:		Daemons
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
@@ -229,12 +229,12 @@ Obsoletes:	syslogd
 %description syslogd
 syslog daemon from GNU inetutils package.
 
-%description syslogd -l pl
+%description syslogd -l pl.UTF-8
 Demon sysloga z pakietu GNU inetutils.
 
 %package talk
 Summary:	talk client from GNU inetutils package
-Summary(pl):	Klient talk z pakiety GNU inetutils
+Summary(pl.UTF-8):   Klient talk z pakiety GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	talk
@@ -245,12 +245,12 @@ Obsoletes:	talk
 %description talk
 talk client from GNU inetutils package.
 
-%description talk -l pl
+%description talk -l pl.UTF-8
 Klient talk z pakiety GNU inetutils.
 
 %package talkd
 Summary:	talk server from GNU inetutils package
-Summary(pl):	Serwer talk z pakiety GNU inetutils
+Summary(pl.UTF-8):   Serwer talk z pakiety GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
@@ -261,12 +261,12 @@ Obsoletes:	talkd
 %description talkd
 talk server from GNU inetutils package.
 
-%description talkd -l pl
+%description talkd -l pl.UTF-8
 Serwer talk z pakiety GNU inetutils.
 
 %package telnet
 Summary:	telnet client from GNU inetutils package
-Summary(pl):	Klient telneta z pakietu GNU inetutils
+Summary(pl.UTF-8):   Klient telneta z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	telnet
@@ -276,12 +276,12 @@ Obsoletes:	telnet
 %description telnet
 telnet client from GNU inetutils package.
 
-%description telnet -l pl
+%description telnet -l pl.UTF-8
 Klient telneta z pakietu GNU inetutils.
 
 %package telnetd
 Summary:	telnet server from GNU inetutils package
-Summary(pl):	Serwer telneta z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer telneta z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	inetdaemon
@@ -293,12 +293,12 @@ Obsoletes:	telnetd
 %description telnetd
 telnet server from GNU inetutils package.
 
-%description telnetd -l pl
+%description telnetd -l pl.UTF-8
 Serwer telneta z pakietu GNU inetutils.
 
 %package tftp
 Summary:	TFTP client from GNU inetutils package
-Summary(pl):	Klient TFTP z pakietu GNU inetutils
+Summary(pl.UTF-8):   Klient TFTP z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	tftp
@@ -308,12 +308,12 @@ Obsoletes:	tftp-hpa
 %description tftp
 TFTP client from GNU inetutils package.
 
-%description tftp -l pl
+%description tftp -l pl.UTF-8
 Klient TFTP z pakietu GNU inetutils.
 
 %package tftpd
 Summary:	TFTP server from GNU inetutils package
-Summary(pl):	Serwer TFTP z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer TFTP z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
@@ -327,12 +327,12 @@ Obsoletes:	utftpd
 %description tftpd
 TFTP server from GNU inetutils package.
 
-%description tftpd -l pl
+%description tftpd -l pl.UTF-8
 Serwer TFTP z pakietu GNU inetutils.
 
 %package uucpd
 Summary:	UUCP server from GNU inetutils package
-Summary(pl):	Serwer UUCP z pakietu GNU inetutils
+Summary(pl.UTF-8):   Serwer UUCP z pakietu GNU inetutils
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-scripts
@@ -342,12 +342,12 @@ Obsoletes:	uucpd
 %description uucpd
 UUCP server from GNU inetutils package.
 
-%description uucpd -l pl
+%description uucpd -l pl.UTF-8
 Serwer UUCP z pakietu GNU inetutils.
 
 %package whois
 Summary:	whois client from GNU inetutils package
-Summary(pl):	Klient whois z pakietu GNU inetutils
+Summary(pl.UTF-8):   Klient whois z pakietu GNU inetutils
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	whois
@@ -356,7 +356,7 @@ Obsoletes:	whois
 %description whois
 whois client from GNU inetutils package.
 
-%description whois -l pl
+%description whois -l pl.UTF-8
 Klient whois z pakietu GNU inetutils.
 
 %prep
