@@ -271,6 +271,7 @@ Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Provides:	telnet
 Obsoletes:	heimdal-telnet
+Obsoletes:	krb5-telnet
 Obsoletes:	telnet
 
 %description telnet
