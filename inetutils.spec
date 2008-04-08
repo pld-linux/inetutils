@@ -17,7 +17,7 @@ Version:	1.5
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	ftp://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
 # Source0-md5:	9e0f1ac040de3168ea785f44e42d585e
 # syslogd:
 Source1:	%{name}-syslog.conf
