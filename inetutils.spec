@@ -78,7 +78,7 @@ Klient FTP z pakietu GNU inetutils.
 %package ftpd
 Summary:	FTP server from GNU inetutils package
 Summary(pl.UTF-8):	Serwer FTP z pakietu GNU inetutils
-Group:		Networking/Daemons
+Group:		Networking/Daemons/FTP
 Requires:	%{name} = %{version}-%{release}
 Provides:	ftpserver
 Obsoletes:	ftpserver
@@ -315,7 +315,7 @@ Klient TFTP z pakietu GNU inetutils.
 %package tftpd
 Summary:	TFTP server from GNU inetutils package
 Summary(pl.UTF-8):	Serwer TFTP z pakietu GNU inetutils
-Group:		Networking/Daemons
+Group:		Networking/Daemons/FTP
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
 Provides:	tftpdaemon
