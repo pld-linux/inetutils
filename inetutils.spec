@@ -62,7 +62,7 @@ narzędzia są w osobnych pakietach.
 %package ftp
 Summary:	FTP client from GNU inetutils package
 Summary(pl.UTF-8):	Klient FTP z pakietu GNU inetutils
-Group:		Networking/Utilities
+Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Provides:	ftp
 Obsoletes:	ftp
@@ -235,7 +235,7 @@ Demon sysloga z pakietu GNU inetutils.
 %package talk
 Summary:	talk client from GNU inetutils package
 Summary(pl.UTF-8):	Klient talk z pakiety GNU inetutils
-Group:		Networking/Utilities
+Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Provides:	talk
 Obsoletes:	ntalk
@@ -300,7 +300,7 @@ Serwer telneta z pakietu GNU inetutils.
 %package tftp
 Summary:	TFTP client from GNU inetutils package
 Summary(pl.UTF-8):	Klient TFTP z pakietu GNU inetutils
-Group:		Networking/Utilities
+Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Provides:	tftp
 Obsoletes:	tftp
