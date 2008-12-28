@@ -13,12 +13,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	1.5
+Version:	1.6
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
-# Source0-md5:	9e0f1ac040de3168ea785f44e42d585e
+# Source0-md5:	23cc24bc77751bf77d50a07a7395f9b3
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -78,7 +78,7 @@ Klient FTP z pakietu GNU inetutils.
 %package ftpd
 Summary:	FTP server from GNU inetutils package
 Summary(pl.UTF-8):	Serwer FTP z pakietu GNU inetutils
-Group:		Networking/Daemons/FTP
+Group:		Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	ftpserver
 Obsoletes:	ftpserver
@@ -89,6 +89,24 @@ FTP server from GNU inetutils package.
 
 %description ftpd -l pl.UTF-8
 Serwer FTP z pakietu GNU inetutils.
+
+%package hostname
+Summary:	show or set the system's host name
+Summary(pl.UTF-8):	pokazuje lub ustawia nazwę hosta systemu
+Group:		Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description hostname
+Hostname is the program that is used to either set or display the
+current host, domain or node name of the system. These names are used
+by many of the networking programs to identify the machine. The domain
+name is also used by NIS/YP.
+
+%description hostname -l pl.UTF-8
+Hostname jest programem służącym do nadawania bądź wyświetlania nazw
+hosta, domeny lub węzła systemu. Nazwy te są używane przez wiele
+programów sieciowych do identyfikacji maszyny. Nazwa domeny
+wykorzystywana jest też przez NIS/YP.
 
 %package inetd
 Summary:	inetd server from GNU inetutils package
@@ -297,6 +315,19 @@ telnet server from GNU inetutils package.
 %description telnetd -l pl.UTF-8
 Serwer telneta z pakietu GNU inetutils.
 
+%package traceroute
+Summary:	Traces the route taken by packets over a TCP/IP network
+Summary(pl.UTF-8):	Program do śledzenia trasy pakietów przez sieć TCP/IP
+Group:		Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description traceroute
+traceroute displays the route used by IP packets on their way to
+specified host.
+
+%description traceroute -l pl.UTF-8
+traceroute wyświetla trasę pakietów do podanego komputera.
+
 %package tftp
 Summary:	TFTP client from GNU inetutils package
 Summary(pl.UTF-8):	Klient TFTP z pakietu GNU inetutils
@@ -315,7 +346,7 @@ Klient TFTP z pakietu GNU inetutils.
 %package tftpd
 Summary:	TFTP server from GNU inetutils package
 Summary(pl.UTF-8):	Serwer TFTP z pakietu GNU inetutils
-Group:		Networking/Daemons/FTP
+Group:		Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
 Provides:	tftpdaemon
@@ -477,6 +508,10 @@ fi
 %attr(755,root,root) %{_sbindir}/ftpd
 %{_mandir}/man8/ftpd.8*
 
+%files hostname
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/hostname
+
 %files inetd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/inetd
@@ -554,6 +589,10 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/telnetd
 %attr(755,root,root) %{_sbindir}/telnetd
 %{_mandir}/man8/telnetd.8*
+
+%files traceroute
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/traceroute
 
 %files tftp
 %defattr(644,root,root,755)
