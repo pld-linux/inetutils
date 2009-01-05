@@ -25,27 +25,27 @@
 -* tftpd: (inetutils)tftpd invocation.           TFTP server.
 -* uucpd: (inetutils)uucpd invocation.           Unix to Unix Copy.
 -* whois: (inetutils)whois invocation.           Whois user interface.
-+* traceroute: (inetutils)traceroute.    Trace the route to a host.
-+* ftp: (inetutils)ftp.               File Transfer Protocol.
-+* ftpd: (inetutils)ftpd.             FTP Daemon.
-+* inetd: (inetutils)inetd.           Internet super-server.
-+* ping: (inetutils)ping.             Packets to network hosts.
-+* rcp: (inetutils)rcp.               Strip non-directory suffix.
-+* rexecd: (inetutils)rexecd.         Remote execution server.
-+* rlogin: (inetutils)rlogin.         Remote login.
-+* rlogind: (inetutils)rlogind.       Remote login server.
-+* rsh: (inetutils)rsh.               Remote shell.
-+* rshd: (inetutils)rshd.             Remote shell server.
-+* logger: (inetutils)logger.            Make entries in the system log.
-+* syslogd: (inetutils)syslogd.       Syslog server.
-+* talk: (inetutils)talk.             Talk client.
-+* talkd: (inetutils)talkd.           Talk server.
-+* telnet: (inetutils)telnet.         User interface to TELNET.
-+* telnetd: (inetutils)telnetd.       Telnet server.
-+* tftp: (inetutils)tftp.             Trivial FTP.
-+* tftpd: (inetutils)tftpd.           TFTP server.
-+* uucpd: (inetutils)uucpd.           Unix to Unix Copy.
-+* whois: (inetutils)whois.           Whois user interface.
++* traceroute: (inetutils)traceroute.	Trace the route to a host
++* ftp: (inetutils)ftp.			File Transfer Protocol
++* ftpd: (inetutils)ftpd.		FTP Daemon
++* inetd: (inetutils)inetd.		Internet super-server
++* ping: (inetutils)ping.		Packets to network hosts
++* rcp: (inetutils)rcp.			Strip non-directory suffix
++* rexecd: (inetutils)rexecd.		Remote execution server
++* rlogin: (inetutils)rlogin.		Remote login
++* rlogind: (inetutils)rlogind.		Remote login server
++* rsh: (inetutils)rsh.			Remote shell
++* rshd: (inetutils)rshd.		Remote shell server
++* logger: (inetutils)logger.		Make entries in the system log
++* syslogd: (inetutils)syslogd.		Syslog server
++* talk: (inetutils)talk.		Talk client
++* talkd: (inetutils)talkd.		Talk server
++* telnet: (inetutils)telnet.		User interface to TELNET
++* telnetd: (inetutils)telnetd.		Telnet server
++* tftp: (inetutils)tftp.		Trivial FTP
++* tftpd: (inetutils)tftpd.		TFTP server
++* uucpd: (inetutils)uucpd.		Unix to Unix Copy
++* whois: (inetutils)whois.		Whois user interface
  @end direntry
  
  @copying
