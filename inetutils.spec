@@ -91,8 +91,8 @@ FTP server from GNU inetutils package.
 Serwer FTP z pakietu GNU inetutils.
 
 %package hostname
-Summary:	show or set the system's host name
-Summary(pl.UTF-8):	pokazuje lub ustawia nazwę hosta systemu
+Summary:	Showing or setting the system's host name
+Summary(pl.UTF-8):	Pokazanie lub ustawienie nazwy hosta
 Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 
@@ -103,9 +103,9 @@ by many of the networking programs to identify the machine. The domain
 name is also used by NIS/YP.
 
 %description hostname -l pl.UTF-8
-Hostname jest programem służącym do nadawania bądź wyświetlania nazw
-hosta, domeny lub węzła systemu. Nazwy te są używane przez wiele
-programów sieciowych do identyfikacji maszyny. Nazwa domeny
+Hostname jest programem służącym do nadawania nowych lub podawania
+aktualnych nazw hosta, domeny lub węzła systemu. Nazwy te są używane
+przez wiele programów sieciowych do identyfikacji maszyny. Nazwa domeny
 wykorzystywana jest też przez NIS/YP.
 
 %package inetd
