@@ -1,0 +1,96 @@
+--- inetutils-1.8/man/Makefile.am.orig	2010-05-15 13:25:47.000000000 +0200
++++ inetutils-1.8/man/Makefile.am	2010-11-13 10:18:06.303140164 +0100
+@@ -22,6 +22,7 @@
+       traceroute.1 uucpd.8 whois.1
+ 
+ dist_man1_MANS =
++dist_man8_MANS =
+ 
+ if ENABLE_hostname
+ dist_man1_MANS += hostname.1
+@@ -32,7 +33,7 @@
+ endif
+ 
+ if ENABLE_inetd
+-dist_man1_MANS += inetd.8
++dist_man8_MANS += inetd.8
+ endif
+ 
+ if ENABLE_ftp
+@@ -40,7 +41,7 @@
+ endif
+ 
+ if ENABLE_ftpd
+-dist_man1_MANS += ftpd.8
++dist_man8_MANS += ftpd.8
+ endif
+ 
+ if ENABLE_logger
+@@ -64,7 +65,7 @@
+ endif
+ 
+ if ENABLE_rexecd
+-dist_man1_MANS += rexecd.8
++dist_man8_MANS += rexecd.8
+ endif
+ 
+ if ENABLE_rlogin
+@@ -72,7 +73,7 @@
+ endif
+ 
+ if ENABLE_rlogind
+-dist_man1_MANS += rlogind.8
++dist_man8_MANS += rlogind.8
+ endif
+ 
+ if ENABLE_rsh
+@@ -80,11 +81,11 @@
+ endif
+ 
+ if ENABLE_rshd
+-dist_man1_MANS += rshd.8
++dist_man8_MANS += rshd.8
+ endif
+ 
+ if ENABLE_syslogd
+-dist_man1_MANS += syslogd.8
++dist_man8_MANS += syslogd.8
+ endif
+ 
+ if ENABLE_talk
+@@ -92,7 +93,7 @@
+ endif
+ 
+ if ENABLE_talkd
+-dist_man1_MANS += talkd.8
++dist_man8_MANS += talkd.8
+ endif
+ 
+ if ENABLE_telnet
+@@ -100,7 +101,7 @@
+ endif
+ 
+ if ENABLE_telnetd
+-dist_man1_MANS += telnetd.8
++dist_man8_MANS += telnetd.8
+ endif
+ 
+ if ENABLE_tftp
+@@ -108,7 +109,7 @@
+ endif
+ 
+ if ENABLE_tftpd
+-dist_man1_MANS += tftpd.8
++dist_man8_MANS += tftpd.8
+ endif
+ 
+ if ENABLE_traceroute
+@@ -116,7 +117,7 @@
+ endif
+ 
+ if ENABLE_uucpd
+-dist_man1_MANS += uucpd.8
++dist_man8_MANS += uucpd.8
+ endif
+ 
+ if ENABLE_whois

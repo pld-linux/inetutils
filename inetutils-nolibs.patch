@@ -1,15 +1,13 @@
 --- inetutils-1.5/configure.ac.orig	2006-10-21 13:57:04.000000000 +0200
 +++ inetutils-1.5/configure.ac	2006-11-19 20:59:22.575311750 +0100
-@@ -131,11 +131,11 @@
+@@ -131,10 +131,10 @@
  gl_INIT
  
  ### Checks for libraries.
--AC_CHECK_LIB(bsd, revoke)
 -AC_CHECK_LIB(nsl, inet_ntoa)
 -AC_CHECK_LIB(resolv, gethostname)
 -AC_CHECK_LIB(socket, getpeername)
 -AC_CHECK_LIB(opie, opiegenerator)
-+AC_SEARCH_LIBS(revoke, bsd)
 +AC_SEARCH_LIBS(inet_ntoa, nsl)
 +AC_SEARCH_LIBS(gethostname, resolv)
 +AC_SEARCH_LIBS(getpeername, socket)

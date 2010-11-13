@@ -13,12 +13,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	1.6
+Version:	1.8
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
-# Source0-md5:	23cc24bc77751bf77d50a07a7395f9b3
+# Source0-md5:	ad8fdcdf1797b9ca258264a6b04e48fd
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -35,9 +35,10 @@ Source16:	%{name}-ftp.png
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-tinfo.patch
+Patch3:		%{name}-man.patch
 URL:		http://www.gnu.org/software/inetutils/
 BuildRequires:	autoconf >= 2.59
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.11
 # for config.rpath
 BuildRequires:	gettext-devel
 BuildRequires:	libwrap-devel
@@ -108,6 +109,19 @@ aktualnych nazw hosta, domeny lub węzła systemu. Nazwy te są używane
 przez wiele programów sieciowych do identyfikacji maszyny. Nazwa domeny
 wykorzystywana jest też przez NIS/YP.
 
+%package ifconfig
+Summary:	Network interfaces configuration program from GNU inetutils
+Summary(pl.UTF-8):	Program do konfiguracji interfejsów sieciowych z pakietu GNU inetutils
+Group:		Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description ifconfig
+Network interfaces configuration program from GNU inetutils.
+
+%description ifconfig -l pl.UTF-8
+Program do konfiguracji interfejsów sieciowych, pochodzący z pakietu
+GNU inetutils.
+
 %package inetd
 Summary:	inetd server from GNU inetutils package
 Summary(pl.UTF-8):	Serwer inetd z pakietu GNU inetutils
@@ -154,6 +168,21 @@ ping utility from GNU inetutils package.
 
 %description ping -l pl.UTF-8
 Narzędzie ping z pakietu GNU inetutils.
+
+%package rexec
+Summary:	rexec client from GNU inetutils package
+Summary(pl.UTF-8):	Klient rexec z pakietu GNU inetutils
+Group:		Networking/Daemons
+Requires:	%{name} = %{version}-%{release}
+Requires:	rc-inetd
+Provides:	rexec
+Obsoletes:	rexec
+
+%description rexec
+rexec client from GNU inetutils package.
+
+%description rexec -l pl.UTF-8
+Klient rexec z pakietu GNU inetutils.
 
 %package rexecd
 Summary:	rexec server from GNU inetutils package
@@ -396,15 +425,17 @@ Klient whois z pakietu GNU inetutils.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-
-cp -f /usr/share/gettext/config.rpath build-aux
+%patch3 -p1
 
 %build
-%{__aclocal} -I m4
+cp -f /usr/share/gettext/config.rpath build-aux
+%{__aclocal} -I m4 -I am
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
 %configure \
+	--disable-silent-rules \
 	--with-pam \
 	--with-wrap
 
@@ -511,6 +542,12 @@ fi
 %files hostname
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/hostname
+%{_mandir}/man1/hostname.1*
+
+%files ifconfig
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/ifconfig
+%{_mandir}/man1/ifconfig.1*
 
 %files inetd
 %defattr(644,root,root,755)
@@ -524,10 +561,15 @@ fi
 
 %files ping
 %defattr(644,root,root,755)
-%doc ping/TODO
 %attr(4754,root,adm) /bin/ping
 %attr(4754,root,adm) /bin/ping6
-%{_mandir}/man8/ping.8*
+%{_mandir}/man1/ping.1*
+%{_mandir}/man1/ping6.1*
+
+%files rexec
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/rexec
+%{_mandir}/man1/rexec.1*
 
 %files rexecd
 %defattr(644,root,root,755)
@@ -564,7 +606,6 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/syslog
 %attr(640,root,root) %ghost /var/log/*
 %attr(755,root,root) %{_sbindir}/syslogd
-%{_mandir}/man5/syslog.conf.5*
 %{_mandir}/man8/syslogd.8*
 
 %files talk
@@ -593,6 +634,7 @@ fi
 %files traceroute
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/traceroute
+%{_mandir}/man1/traceroute.1*
 
 %files tftp
 %defattr(644,root,root,755)
@@ -607,8 +649,9 @@ fi
 %files uucpd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/uucpd
+%{_mandir}/man8/uucpd.8*
 
 %files whois
 %defattr(644,root,root,755)
-%doc gwhois/{README,TODO}
 %attr(755,root,root) %{_bindir}/whois
+%{_mandir}/man1/whois.1*

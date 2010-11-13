@@ -1,14 +1,14 @@
---- inetutils-1.5/acinclude.m4.orig	2006-10-11 23:46:22.000000000 +0200
-+++ inetutils-1.5/acinclude.m4	2006-11-19 21:38:12.412917500 +0100
-@@ -197,6 +197,7 @@
- dnl 
+--- inetutils-1.8/am/libcurses.m4.orig	2010-05-15 13:25:47.000000000 +0200
++++ inetutils-1.8/am/libcurses.m4	2010-11-13 08:52:51.651102452 +0100
+@@ -84,6 +84,7 @@
+ dnl
  AC_DEFUN([IU_LIB_TERMCAP], [
    AC_REQUIRE([IU_LIB_NCURSES])
 +  AC_CHECK_LIB(tinfo, tgetent, [LIBTERMCAP=-ltinfo], [
    if test "$LIBNCURSES"; then
      LIBTERMCAP="$LIBNCURSES"
    else
-@@ -208,6 +209,7 @@
+@@ -95,6 +96,7 @@
        AC_CHECK_LIB(termlib, tgetent, LIBTERMCAP=-ltermlib)
      fi
    fi
