@@ -1,8 +1,7 @@
 # TODO:
-# - package ifconfig?
 # - rc-scripts for: ftpd,telnetd(?),rlogind,uucpd
 # - rc-inetd for: ftpd, telnetd,tftpd,rexecd,rlogind,talkd,uucpd
-# - default configs for:
+# - default configs for: ???
 # - inetd and standalone subpackages (where possible): ftpd,telnetd(?),rlogind,uucpd
 # - collect Obsoletes for: rexecd,rlogin,rsh,rshd,rlogind,uucpd
 # - optional kerberos?
@@ -13,12 +12,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	1.8
+Version:	1.9
 Release:	0.1
-License:	GPL
+License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
-# Source0-md5:	ad8fdcdf1797b9ca258264a6b04e48fd
+# Source0-md5:	70834e84dd16aa2bf0afb0e9e2381260
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -35,10 +34,9 @@ Source16:	%{name}-ftp.png
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-tinfo.patch
-Patch3:		%{name}-man.patch
 URL:		http://www.gnu.org/software/inetutils/
 BuildRequires:	autoconf >= 2.59
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	automake >= 1:1.11.1
 # for config.rpath
 BuildRequires:	gettext-devel
 BuildRequires:	libwrap-devel
@@ -425,7 +423,6 @@ Klient whois z pakietu GNU inetutils.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 cp -f /usr/share/gettext/config.rpath build-aux
@@ -436,6 +433,7 @@ cp -f /usr/share/gettext/config.rpath build-aux
 CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
 %configure \
 	--disable-silent-rules \
+	--with-path-procnet-dev=/proc/net/dev \
 	--with-pam \
 	--with-wrap
 
@@ -473,10 +471,10 @@ mv $RPM_BUILD_ROOT%{_bindir}/ping6 $RPM_BUILD_ROOT/bin
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %post syslogd
@@ -525,7 +523,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README* THANKS TODO
-%{_infodir}/*.info*
+%{_infodir}/inetutils.info*
 
 %files ftp
 %defattr(644,root,root,755)
