@@ -38,7 +38,7 @@ URL:		http://www.gnu.org/software/inetutils/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.11.1
 # for config.rpath
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
