@@ -1,6 +1,6 @@
---- inetutils-1.9.4/doc/inetutils.texi.orig	2021-03-06 19:37:06.983684144 +0100
-+++ inetutils-1.9.4/doc/inetutils.texi	2021-03-06 19:43:38.068232124 +0100
-@@ -19,39 +19,35 @@
+--- inetutils-2.0/doc/inetutils.texi.orig	2021-03-06 20:38:36.203697924 +0100
++++ inetutils-2.0/doc/inetutils.texi	2021-03-06 20:51:23.896205643 +0100
+@@ -19,40 +19,36 @@
  @syncodeindex pg cp
  @syncodeindex vr cp
  
@@ -17,6 +17,7 @@
 -* ftp: (inetutils)ftp invocation.                 FTP client.
 -* ftpd: (inetutils)ftpd invocation.               FTP Daemon.
 -* hostname: (inetutils)hostname invocation.       Show or set system host name.
+-* ifconfig: (inetutils)ifconfig invocation.       Configure network interfaces.
 -* inetd: (inetutils)inetd invocation.             Internet super-server.
 -* logger: (inetutils)logger invocation.           Send messages to the system log.
 -* ping6: (inetutils)ping6 invocation.             Packets to IPv6 network hosts.
@@ -39,11 +40,12 @@
 -* uucpd: (inetutils)uucpd invocation.             Unix to Unix Copy.
 -* whois: (inetutils)whois invocation.             Whois user interface.
 +* Inetutils: (inetutils).		GNU networking utilities
-+* Common options: (inetutils)Common options. Inetutils common options
++* Common options: (inetutils)Common options. Common options
 +* dnsdomainname: (inetutils)dnsdomainname. Show DNS domain name
-+* ftp: (inetutils)ftp.			FTP client.
-+* ftpd: (inetutils)ftpd.		FTP Daemon.
++* ftp: (inetutils)ftp.			FTP client
++* ftpd: (inetutils)ftpd.		FTP Daemon
 +* hostname: (inetutils)hostname.	Show or set system host name
++* ifconfig: (inetutils)ifconfig.	Configure network interfaces
 +* inetd: (inetutils)inetd.		Internet super-server
 +* logger: (inetutils)logger.		Send messages to the system log
 +* ping6: (inetutils)ping6.		Packets to IPv6 network hosts
