@@ -12,12 +12,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	1.9.1
+Version:	1.9.4
 Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
-Source0:	http://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.gz
-# Source0-md5:	944f7196a2b3dba2d400e9088576000c
+Source0:	https://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.xz
+# Source0-md5:	87fef1fa3f603aef11c41dcc097af75e
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -32,18 +32,20 @@ Source15:	%{name}-ftp.desktop
 Source16:	%{name}-ftp.png
 # patches:
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-tinfo.patch
 URL:		http://www.gnu.org/software/inetutils/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.11.1
 # for config.rpath
 BuildRequires:	gettext-tools
+BuildRequires:	libidn-devel
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_sbindir}
@@ -94,6 +96,8 @@ Summary:	Showing or setting the system's host name
 Summary(pl.UTF-8):	Pokazanie lub ustawienie nazwy hosta
 Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
+Provides:	hostname
+Obsoletes:	hostname
 
 %description hostname
 Hostname is the program that is used to either set or display the
@@ -104,8 +108,8 @@ name is also used by NIS/YP.
 %description hostname -l pl.UTF-8
 Hostname jest programem służącym do nadawania nowych lub podawania
 aktualnych nazw hosta, domeny lub węzła systemu. Nazwy te są używane
-przez wiele programów sieciowych do identyfikacji maszyny. Nazwa domeny
-wykorzystywana jest też przez NIS/YP.
+przez wiele programów sieciowych do identyfikacji maszyny. Nazwa
+domeny wykorzystywana jest też przez NIS/YP.
 
 %package ifconfig
 Summary:	Network interfaces configuration program from GNU inetutils
@@ -421,7 +425,6 @@ Klient whois z pakietu GNU inetutils.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 
 %build
@@ -433,6 +436,7 @@ cp -f /usr/share/gettext/config.rpath build-aux
 CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
 %configure \
 	--disable-silent-rules \
+	--with-idn \
 	--with-path-procnet-dev=/proc/net/dev \
 	--with-pam \
 	--with-wrap
@@ -539,7 +543,9 @@ fi
 
 %files hostname
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/dnsdomainname
 %attr(755,root,root) %{_bindir}/hostname
+%{_mandir}/man1/dnsdomainname.1*
 %{_mandir}/man1/hostname.1*
 
 %files ifconfig

@@ -1,8 +1,8 @@
---- inetutils-1.8/doc/inetutils.texi.orig	2010-05-15 13:25:47.000000000 +0200
-+++ inetutils-1.8/doc/inetutils.texi	2010-11-13 08:26:42.819104128 +0100
-@@ -21,37 +21,33 @@
- 
- @set Francois Fran@,{c}ois
+--- inetutils-1.9.4/doc/inetutils.texi.orig	2021-03-06 19:37:06.983684144 +0100
++++ inetutils-1.9.4/doc/inetutils.texi	2021-03-06 19:43:38.068232124 +0100
+@@ -19,39 +19,35 @@
+ @syncodeindex pg cp
+ @syncodeindex vr cp
  
 -@dircategory Basics
 +@dircategory Net utilities:
@@ -13,11 +13,13 @@
 -
 -@dircategory Individual utilities
 -@direntry
+-* dnsdomainname: (inetutils)dnsdomainname invocation.       Show DNS domain name.
 -* ftp: (inetutils)ftp invocation.                 FTP client.
 -* ftpd: (inetutils)ftpd invocation.               FTP Daemon.
 -* hostname: (inetutils)hostname invocation.       Show or set system host name.
--* inetd: (inetutils)inetd invocation.             Interner super-server.
+-* inetd: (inetutils)inetd invocation.             Internet super-server.
 -* logger: (inetutils)logger invocation.           Send messages to the system log.
+-* ping6: (inetutils)ping6 invocation.             Packets to IPv6 network hosts.
 -* ping: (inetutils)ping invocation.               Packets to network hosts.
 -* rcp: (inetutils)rcp invocation.                 Remote copy
 -* rexec: (inetutils)rexec invocation.             Remote execution client.
@@ -37,12 +39,14 @@
 -* uucpd: (inetutils)uucpd invocation.             Unix to Unix Copy.
 -* whois: (inetutils)whois invocation.             Whois user interface.
 +* Inetutils: (inetutils).		GNU networking utilities
-+* Inetutils common options: (inetutils)Common options.	Inetutils common options
-+* ftp: (inetutils)ftp.			FTP client
-+* ftpd: (inetutils)ftpd.		FTP Daemon
++* Common options: (inetutils)Common options. Inetutils common options
++* dnsdomainname: (inetutils)dnsdomainname. Show DNS domain name
++* ftp: (inetutils)ftp.			FTP client.
++* ftpd: (inetutils)ftpd.		FTP Daemon.
 +* hostname: (inetutils)hostname.	Show or set system host name
-+* inetd: (inetutils)inetd.		Interner super-server
++* inetd: (inetutils)inetd.		Internet super-server
 +* logger: (inetutils)logger.		Send messages to the system log
++* ping6: (inetutils)ping6.		Packets to IPv6 network hosts
 +* ping: (inetutils)ping.		Packets to network hosts
 +* rcp: (inetutils)rcp.			Remote copy
 +* rexec: (inetutils)rexec.		Remote execution client
