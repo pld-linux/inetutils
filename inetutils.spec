@@ -12,12 +12,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	2.0
+Version:	2.2
 Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	https://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.xz
-# Source0-md5:	5e1018502cd131ed8e42339f6b5c98aa
+# Source0-md5:	de8c1b49cbde2b30e481c61c65357ad4
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -34,11 +34,11 @@ Source16:	%{name}-ftp.png
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-tinfo.patch
 URL:		http://www.gnu.org/software/inetutils/
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11.1
 # for config.rpath
 BuildRequires:	gettext-tools
-BuildRequires:	libidn-devel
+BuildRequires:	libidn2-devel
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
 BuildRequires:	readline-devel
