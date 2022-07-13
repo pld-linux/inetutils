@@ -1,6 +1,6 @@
---- inetutils-1.8/am/libcurses.m4.orig	2010-05-15 13:25:47.000000000 +0200
-+++ inetutils-1.8/am/libcurses.m4	2010-11-13 08:52:51.651102452 +0100
-@@ -84,6 +84,7 @@
+--- inetutils-2.3/am/libcurses.m4.orig	2022-06-18 20:34:05.000000000 +0200
++++ inetutils-2.3/am/libcurses.m4	2022-07-13 21:50:34.685765670 +0200
+@@ -89,6 +89,7 @@ dnl contradictions.
  dnl
  AC_DEFUN([IU_LIB_TERMCAP], [
    AC_REQUIRE([IU_LIB_NCURSES])
@@ -8,11 +8,11 @@
    if test "$LIBNCURSES"; then
      LIBTERMCAP="$LIBNCURSES"
    else
-@@ -95,6 +96,7 @@
-       AC_CHECK_LIB(termlib, tgetent, LIBTERMCAP=-ltermlib)
+@@ -149,6 +150,7 @@ AC_DEFUN([IU_LIB_TERMCAP], [
+       AC_DEFINE([HAVE_TGETENT], 1, [Define to 1 if tgetent() exists.])
      fi
    fi
 +  ])
    AC_SUBST(LIBTERMCAP)])dnl
  
- dnl IU_LIB_CURSES -- checke for curses, and associated libraries
+ dnl IU_LIB_CURSES -- check for curses, and associated libraries
