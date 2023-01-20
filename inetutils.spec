@@ -1,4 +1,5 @@
 # TODO:
+# - kerberos (--with-krb5 for MIT or --with-shishi; heimdal is not supported)
 # - rc-scripts for: ftpd,telnetd(?),rlogind,uucpd
 # - rc-inetd for: ftpd, telnetd,tftpd,rexecd,rlogind,talkd,uucpd
 # - default configs for: ???
@@ -12,12 +13,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	2.3
+Version:	2.4
 Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	https://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.xz
-# Source0-md5:	e73e2ed42d73ceb47616b20131236036
+# Source0-md5:	319d65bb5a6f1847c4810651f3b4ba74
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
@@ -38,6 +39,7 @@ BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11.1
 # for config.rpath
 BuildRequires:	gettext-tools
+BuildRequires:	help2man
 BuildRequires:	libidn2-devel
 BuildRequires:	libwrap-devel
 BuildRequires:	pam-devel
@@ -437,8 +439,8 @@ CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
 %configure \
 	--disable-silent-rules \
 	--with-idn \
-	--with-path-procnet-dev=/proc/net/dev \
 	--with-pam \
+	--with-path-procnet-dev=/proc/net/dev \
 	--with-wrap
 
 %{__make}
