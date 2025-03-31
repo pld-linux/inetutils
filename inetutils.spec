@@ -13,12 +13,12 @@
 Summary:	Common networking utilities and servers
 Summary(pl.UTF-8):	Popularne narzędzia i serwery sieciowe
 Name:		inetutils
-Version:	2.5
+Version:	2.6
 Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	https://ftp.gnu.org/gnu/inetutils/%{name}-%{version}.tar.xz
-# Source0-md5:	9e5a6dfd2d794dc056a770e8ad4a9263
+# Source0-md5:	401d7d07682a193960bcdecafd03de94
 # syslogd:
 Source1:	%{name}-syslog.conf
 Source2:	%{name}-syslog.init
